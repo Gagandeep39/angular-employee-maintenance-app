@@ -8,6 +8,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminHeaderComponent } from './admin/admin-header/admin-header.component';
 import { EmployeeAddComponent } from './admin/employee-add/employee-add.component';
 import { EmployeeListComponent } from './admin/employee-list/employee-list.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -29,7 +30,7 @@ const routes: Routes = [
     EmployeeAddComponent,
     EmployeeListComponent
   ],
-  imports: [BrowserModule, RouterModule.forRoot(routes)],
+  imports: [BrowserModule, RouterModule.forRoot(routes), HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]
 })
