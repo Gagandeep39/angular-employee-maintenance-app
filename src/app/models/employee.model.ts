@@ -4,20 +4,20 @@ export interface EmployeeBook {
 
 export class Employee {
   constructor(
-    id: number,
-    empFirstName: string,
-    empLastName: string,
-    empDateOfBirth: Date,
-    empDateOfJoining: Date,
-    empDepartmentId: number,
-    empGrade: Grade,
-    empDesignation: Designation,
-    empBasic: number,
-    empGender: Gender,
-    empMaritalStatus: MaritalStatus,
-    empHomeAddress: string,
-    empContactNumber: string,
-    empManagerId: number
+    public id: number,
+    public empFirstName: string,
+    public empLastName: string,
+    public empDateOfBirth: Date,
+    public empDateOfJoining: Date,
+    public empDepartmentId: number,
+    public empGrade: Grade,
+    public empDesignation: Designation,
+    public empBasic: number,
+    public empGender: Gender,
+    public empMaritalStatus: MaritalStatus,
+    public empHomeAddress: string,
+    public empContactNumber: string,
+    public empManagerId: number
   ) {}
 }
 
