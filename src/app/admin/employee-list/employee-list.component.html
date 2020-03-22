@@ -1,3 +1,20 @@
-<p>
-  employee-list works!
-</p>
+<table class="table table-striped table-bordered">
+  <thead>
+  <tr>
+    <th class="th" scope="col">#</th>
+    <th class="th" scope="col" (click)="sortByName()">Name</th>
+    <th class="th" scope="col">Designation</th>
+    <th class="th" scope="col">Address</th>
+    <th class="th" scope="col">Start Date</th>
+    <th class="th" scope="col">Salary</th>
+  </tr>
+  </thead>
+  <tr *ngFor="let emp of employees">
+    <td> {{ emp.id }} </td>
+    <td> {{ emp.empFirstName + ' ' +  emp.empLastName }} </td>
+    <td> {{ emp.empDesignation }} </td>
+    <td> {{ emp.empHomeAddress }} </td>
+    <td> {{ emp.empDateOfJoining }} </td>
+    <td> {{ emp.empBasic | currency }} </td>
+  </tr>
+</table>
