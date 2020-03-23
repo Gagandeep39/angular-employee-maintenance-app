@@ -11,6 +11,7 @@ export class AdminService {
   employees: Employee[];
 
   employeeEmitter = new BehaviorSubject<Employee[]>(null);
+  employeeErrorEmitter = new Subject<string>();
 
   constructor(private http: HttpClient) {
     this.http.get<Employee[]>(this.employeeRepositoryUrl).subscribe(
@@ -21,6 +22,7 @@ export class AdminService {
       },
       error => {
         console.log(error);
+        this.employeeErrorEmitter.next(error.message);
       },
       () => {
         console.log('Fetched all employees successfully');
