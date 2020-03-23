@@ -10,8 +10,11 @@ import { EmployeeAddComponent } from './admin/employee-add/employee-add.componen
 import { EmployeeListComponent } from './admin/employee-list/employee-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EmployeeDetailsComponent } from './admin/employee-details/employee-details.component';
+import { AlertComponent } from './shared/alert/alert.component';
 
 const routes: Routes = [
+  // Below patch is a place holder until other features are not implemented
+  { path: '', redirectTo: 'admin', pathMatch: 'full' },
   {
     path: 'admin',
     component: AdminComponent,
@@ -33,7 +36,8 @@ const routes: Routes = [
     AdminHeaderComponent,
     EmployeeAddComponent,
     EmployeeListComponent,
-    EmployeeDetailsComponent
+    EmployeeDetailsComponent,
+    AlertComponent
   ],
   imports: [BrowserModule, RouterModule.forRoot(routes), HttpClientModule],
   providers: [],
