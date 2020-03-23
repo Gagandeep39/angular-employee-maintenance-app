@@ -8,29 +8,26 @@ import { Subject, BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class AdminService {
-
   employees: Employee[];
 
   employeeEmitter = new BehaviorSubject<Employee[]>(null);
   employeeErrorEmitter = new Subject<string>();
 
   constructor(private http: HttpClient) {
-    this.http
-      .get<Employee[]>(environment.employeeRepositoryUrl)
-      .subscribe(
-        response => {
-          this.employees = response;
-          this.employeeEmitter.next(this.employees);
-          console.log(this.employees);
-        },
-        error => {
-          console.log(error);
-          this.employeeErrorEmitter.next(error.message);
-        },
-        () => {
-          console.log('Fetched all employees successfully');
-        }
-      );
+    this.http.get<Employee[]>(environment.employeeRepositoryUrl).subscribe(
+      response => {
+        this.employees = response;
+        this.employeeEmitter.next(this.employees.slice());
+        console.log(this.employees);
+      },
+      error => {
+        console.log(error);
+        this.employeeErrorEmitter.next(error.message);
+      },
+      () => {
+        console.log('Fetched all employees successfully');
+      }
+    );
   }
 
   // Get
@@ -55,14 +52,23 @@ export class AdminService {
     this.employees.sort((a, b) => {
       return a.empFirstName > b.empFirstName ? 1 : -1;
     });
-    this.employeeEmitter.next(this.employees);
+    this.employeeEmitter.next(this.employees.slice());
   }
 
   sortById() {
     this.employees.sort((a, b) => {
       return a.id - b.id;
     });
-    this.employeeEmitter.next(this.employees);
+    this.employeeEmitter.next(this.employees.slice());
+  }
+
+  // Uses Index for now
+  fetchEmployeeById(id: number) {
+    // Ensures ID and Employees both are not null
+    if (id && this.employees) {
+      return this.employees.slice()[id];
+    }
+    return null;
   }
 }
 
