@@ -1,5 +1,5 @@
-export interface EmployeeBook {
-  employees: { [key: string]: Employee };
+export interface EmployeeList {
+  [key: string]: Employee[];
 }
 
 export class Employee {
@@ -55,11 +55,11 @@ export enum MaritalStatus {
 
 // Converts JSON strings to/from your types
 export class Convert {
-  public static toEmployeeBook(json: string): EmployeeBook {
+  public static toEmployeeList(json: string): EmployeeList {
     return JSON.parse(json);
   }
 
-  public static employeeBookToJson(value: EmployeeBook): string {
+  public static employeeListToJson(value: EmployeeList): string {
     return JSON.stringify(value);
   }
 
@@ -71,3 +71,7 @@ export class Convert {
     return JSON.stringify(value);
   }
 }
+
+/**
+ * TODO - Improve the Object structure
+ */
