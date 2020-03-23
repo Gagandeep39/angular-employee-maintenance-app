@@ -15,11 +15,11 @@
         <div class="row">
           <div class="col">
 
-            <button type="button" class="btn btn-success btn-block">Edit</button>
+            <button type="button" class="btn btn-success btn-block m-1">Edit</button>
           </div>
           <div class="col">
 
-            <button type="button" class="btn btn-primary btn-block">Back</button>
+            <button type="button" class="btn btn-primary btn-block m-1" [routerLink]="['../']" routerLinkActive="router-link-active" >Back</button>
           </div>
 
         </div>
@@ -32,35 +32,35 @@
         <table class="table table-user-information">
           <tbody>
             <tr>
-              <td class="title"> Date of birth:</td>
-              <td> 06/12/1222 </td>
+              <td class="title"> Date of birth</td>
+              <td> {{ employee.empDateOfBirth }} </td>
             </tr>
             <tr>
-              <td class="title">Hire date:</td>
-              <td>06/23/2013</td>
+              <td class="title">Hire date</td>
+              <td> {{ employee.empDateOfJoining }} </td>
             </tr>
             <tr>
-              <td class="title">Date of Birth</td>
-              <td>01/24/1988</td>
+              <td class="title">Age</td>
+              <td> 99 </td>
             </tr>
 
             <tr>
             <tr>
               <td class="title">Gender</td>
-              <td>Female</td>
+              <td> {{employee.empGender}} </td>
             </tr>
             <tr>
               <td class="title">Marital Status</td>
-              <td>Kathmandu,Nepal</td>
+              <td> {{employee.empMaritalStatus}} </td>
             </tr>
             <tr>
               <td class="title">Contact Number</td>
-              <td> 1234567890 </td>
+              <td> {{ employee.empContactNumber }} </td>
             </tr>
 
             <tr>
               <td class="title">Home Address</td>
-              <td>Somewhere on earth </td>
+              <td> {{ employee.empHomeAddress }} </td>
             </tr>
           </tbody>
         </table>
@@ -74,23 +74,23 @@
 
             <tr>
               <td class="title">Department ID</td>
-              <td>1001</td>
+              <td> {{ employee.empDepartmentId }} </td>
             </tr>
             <tr>
               <td class="title">Manager ID</td>
-              <td>1001</td>
+              <td> {{ employee.empManagerId }} </td>
             </tr>
             <tr>
               <td class="title">Grade</td>
-              <td>M1</td>
+              <td> {{ employee.empGrade }} </td>
             </tr>
             <tr>
               <td class="title">Designation</td>
-              <td>Developer</td>
+              <td> {{ employee.empDesignation }} </td>
             </tr>
             <tr>
               <td class="title">Salary</td>
-              <td>1500000</td>
+              <td> {{ employee.empBasic }} </td>
             </tr>
           </tbody>
         </table>
@@ -103,3 +103,4 @@
 
 
 <!-- TODO - Add Icons for back and edit buttons  -->
+<!-- TODO - Pipe to calculate Age  -->
