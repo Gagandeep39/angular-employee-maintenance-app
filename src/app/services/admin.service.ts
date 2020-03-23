@@ -13,14 +13,19 @@ export class AdminService {
   employeeEmitter = new BehaviorSubject<Employee[]>(null);
 
   constructor(private http: HttpClient) {
-this.http
-      .get<Employee[]>(this.employeeRepositoryUrl)
-      .subscribe(response => {
+    this.http.get<Employee[]>(this.employeeRepositoryUrl).subscribe(
+      response => {
         this.employees = response;
-        // console.log(this.employees);
-
         this.employeeEmitter.next(this.employees);
-      });
+        console.log(this.employees);
+      },
+      error => {
+        console.log(error);
+      },
+      () => {
+        console.log('Fetched all employees successfully');
+      }
+    );
   }
 
   // Get
