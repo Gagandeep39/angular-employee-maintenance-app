@@ -8,10 +8,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link">Home</a>
+        <a class="nav-link" [routerLink]="['/admin/list', relav]" routerLinkActive="active" >Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link">Add</a>
+        <a class="nav-link" [routerLink]="['/admin/add']" routerLinkActive="active">Add</a>
       </li>
     </ul>
     <ul class="navbar-nav" style="align-items: right;">
