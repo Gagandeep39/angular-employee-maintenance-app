@@ -9,17 +9,21 @@ import { AdminHeaderComponent } from './admin/admin-header/admin-header.componen
 import { EmployeeAddComponent } from './admin/employee-add/employee-add.component';
 import { EmployeeListComponent } from './admin/employee-list/employee-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { EmployeeDetailsComponent } from './admin/employee-details/employee-details.component';
 
 const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
     children: [
+      { path: '', redirectTo: 'list', pathMatch: 'full' }
       { path: 'list', component: EmployeeListComponent },
       { path: 'add', component: EmployeeAddComponent },
-      { path: ':id/update', component: EmployeeAddComponent }
+      { path: ':id/update', component: EmployeeAddComponent },
+      { path: 'list/:id/details', component: EmployeeAddComponent },
+      { path: '**', redirectTo: 'list' }
     ]
-  }
+  },
 ];
 
 @NgModule({
@@ -28,7 +32,8 @@ const routes: Routes = [
     AdminComponent,
     AdminHeaderComponent,
     EmployeeAddComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    EmployeeDetailsComponent
   ],
   imports: [BrowserModule, RouterModule.forRoot(routes), HttpClientModule],
   providers: [],
