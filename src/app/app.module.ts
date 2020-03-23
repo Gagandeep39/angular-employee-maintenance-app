@@ -19,7 +19,7 @@ const routes: Routes = [
     path: 'admin',
     component: AdminComponent,
     children: [
-      { path: '', redirectTo: 'list', pathMatch: 'full' }
+      { path: '', redirectTo: 'list', pathMatch: 'full' },
       { path: 'list', component: EmployeeListComponent },
       { path: 'add', component: EmployeeAddComponent },
       { path: ':id/update', component: EmployeeAddComponent },
