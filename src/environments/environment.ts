@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // employeeRepositoryUrl = 'http://localhost:3000/employee';
+  employeeRepositoryUrl: 'http://attempt1-server.herokuapp.com/db'
 };
 
 /*
