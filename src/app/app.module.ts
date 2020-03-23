@@ -23,7 +23,7 @@ const routes: Routes = [
       { path: 'list', component: EmployeeListComponent },
       { path: 'add', component: EmployeeAddComponent },
       { path: ':id/update', component: EmployeeAddComponent },
-      { path: 'list/:id/details', component: EmployeeAddComponent },
+      { path: 'list/:id/details', component: EmployeeDetailsComponent },
       { path: '**', redirectTo: 'list' }
     ]
   },
