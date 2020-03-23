@@ -18,3 +18,7 @@
     <td> {{ emp.empBasic | currency }} </td>
   </tr>
 </table>
+<!-- Shown when an error occurs  -->
+<div>
+  <app-alert [message]="error" (alertActionEvent)="handleError($event)" *ngIf="error"></app-alert>
+</div>
