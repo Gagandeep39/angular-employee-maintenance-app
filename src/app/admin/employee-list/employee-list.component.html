@@ -1,4 +1,4 @@
-<table class="table table-striped table-bordered">
+<table class="table table-striped table-bordered text-center table-hover">
   <thead>
   <tr>
     <th class="th" scope="col">#</th>
@@ -7,15 +7,17 @@
     <th class="th" scope="col">Address</th>
     <th class="th" scope="col">Start Date</th>
     <th class="th" scope="col">Salary</th>
+    <th class="th" scope="col">View Data</th>
   </tr>
   </thead>
-  <tr *ngFor="let emp of employees">
+  <tr *ngFor="let emp of employees; let i = index">
     <td> {{ emp.id }} </td>
     <td> {{ emp.empFirstName + ' ' +  emp.empLastName }} </td>
     <td> {{ emp.empDesignation }} </td>
     <td> {{ emp.empHomeAddress }} </td>
     <td> {{ emp.empDateOfJoining }} </td>
     <td> {{ emp.empBasic | currency }} </td>
+    <td> <button type="button" class="btn btn-primary" [routerLink]="[i, 'details']" routerLinkActive="router-link-active" >View</button> </td>
   </tr>
 </table>
 <!-- Shown when an error occurs  -->
