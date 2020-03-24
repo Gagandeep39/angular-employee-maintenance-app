@@ -1,12 +1,3 @@
-<script>
-  $(function() {
-      $('.datepicker').datepicker({
-          format: 'mm-dd-yyyy',
-          endDate: '+0d',
-          autoclose: true
-      });
-  });
-</script>
 <div class="container">
 
   <form class="well form-horizontal" [formGroup]="employeeForm" (ngSubmit)="submitForm()">
@@ -127,9 +118,37 @@
           </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row" style="background-color: beige;">
       <!-- Deprtment  -->
+      <div class="col">
+        <div class="form-group">
+          <label for="deptid">Department</label>
+          <select
+          name="deptid"
+          id="deptid"
+          formControlName="empDepartmentId"
+          [ngClass]="{'is-invalid': submitted && employeeForm.get('empDepartmentId').invalid}"
+          class="custom-select">
+              <option *ngFor="let dept of departments" [value]="dept.departmentId"> {{dept.departmentName}} </option>
+          </select>
+          <div class="invalid-feedback" *ngIf="submitted && employeeForm.get('empDepartmentId').invalid">Select a Department</div>
+        </div>
+      </div>
       <!-- Manager  -->
+      <div class="col">
+        <div class="form-group">
+          <label for="managerid">Managers</label>
+          <select
+          name="managerid"
+          id="managerid"
+          formControlName="empManagerId"
+          [ngClass]="{'is-invalid': submitted && employeeForm.get('empManagerId').invalid}"
+          class="custom-select">
+              <option *ngFor="let manager of managers" [value]="manager.id"> {{manager | managerInfo}} </option>
+          </select>
+          <div class="invalid-feedback" *ngIf="submitted && employeeForm.get('empManagerId').invalid">Select a Manager</div>
+        </div>
+      </div>
     </div>
     <div class="row">
       <!-- Grade  -->
