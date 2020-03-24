@@ -5,7 +5,10 @@
 export const environment = {
   production: false,
   // employeeRepositoryUrl = 'http://localhost:3000/employee';
-  employeeRepositoryUrl: 'http://attempt1-server.herokuapp.com/employee'
+  repositoryUrl: 'http://attempt1-server.herokuapp.com',
+  employeeTable: '/employee',
+  departmentTable: '/department',
+  userTable: '/user'
 };
 
 /*
