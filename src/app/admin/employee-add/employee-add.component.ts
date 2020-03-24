@@ -1,3 +1,5 @@
+import { Gender } from './../../models/Gender.model';
+import { MaritalStatus } from './../../models/marital-status.model';
 import { CustomValidators } from './custom-validators';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -10,6 +12,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class EmployeeAddComponent implements OnInit {
   submitted = false;
   editMode = false;
+  maritalStatus = MaritalStatus;
+  genders = Gender;
 
   employeeForm: FormGroup;
 
@@ -20,7 +24,9 @@ export class EmployeeAddComponent implements OnInit {
       empFirstName: new FormControl('', Validators.required),
       empLastName: new FormControl('', Validators.required),
       empDateOfBirth: new FormControl('', [Validators.required, CustomValidators.forbiddenAge]),
-      empDateOfJoining: new FormControl('', [Validators.required, CustomValidators.forbidFutureDate])
+      empDateOfJoining: new FormControl('', [Validators.required, CustomValidators.forbidFutureDate]),
+      empMaritalStatus: new FormControl('', Validators.required),
+      empGender: new FormControl('', Validators.required)
     });
   }
 

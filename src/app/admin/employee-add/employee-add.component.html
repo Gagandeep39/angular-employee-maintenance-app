@@ -93,9 +93,39 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row" style="background-color: lightgrey;">
       <!-- Marital status  -->
+      <div class="col">
+        <div class="form-group">
+          <label for="status">Matital Status</label>
+          <select
+          name="status"
+          id="status"
+          formControlName="empMaritalStatus"
+          [ngClass]="{'is-invalid': submitted && employeeForm.get('empMaritalStatus').invalid}"
+          class="custom-select">
+              <option *ngFor="let s of maritalStatus | keyvalue" [value]="s.key"> {{s.value}} </option>
+          </select>
+          <div class="invalid-feedback" *ngIf="submitted && employeeForm.get('empMaritalStatus').invalid">Select a Value</div>
+      </div>
+      </div>
       <!-- Gender  -->
+      <div class="col">
+        <label>Gender</label>
+          <div *ngFor="let gender of genders | keyvalue" class="custom-control custom-radio">
+            <input
+            formControlName="empGender"
+              [ngClass]="{'is-invalid':submitted && employeeForm.get('empGender').invalid}"
+              [value]="gender.key"
+              class="custom-control-input"
+              id="{{gender.key}}"
+              type="radio">
+            <label class="custom-control-label" for="{{gender.key}}">{{gender.key}}</label>
+          </div>
+          <div *ngIf="submitted && employeeForm.get('empGender').invalid" class="text-danger">
+            <small>Select an Option</small>
+          </div>
+      </div>
     </div>
     <div class="row">
       <!-- Deprtment  -->
