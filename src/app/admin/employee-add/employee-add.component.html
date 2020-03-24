@@ -137,7 +137,7 @@
       <!-- Manager  -->
       <div class="col">
         <div class="form-group">
-          <label for="managerid">Managers</label>
+          <label for="managerid">Manager</label>
           <select
           name="managerid"
           id="managerid"
@@ -152,6 +152,20 @@
     </div>
     <div class="row">
       <!-- Grade  -->
+      <div class="col">
+        <div class="form-group">
+          <label for="empgrade">Grade</label>
+          <select
+          name="empgrade"
+          id="empgrade"
+          formControlName="empGrade"
+          [ngClass]="{'is-invalid': submitted && employeeForm.get('empGrade').invalid}"
+          class="custom-select">
+              <option *ngFor="let grade of grades" [value]="grade.grade"> {{ grade | gradeType}} </option>
+          </select>
+          <div class="invalid-feedback" *ngIf="submitted && employeeForm.get('empGrade').invalid">Select a Grade</div>
+        </div>
+      </div>
       <!-- Salaray  -->
     </div>
     <div class="row">
@@ -166,4 +180,5 @@
     {{ employeeForm.value | json }}
   </pre>
 </div>
+<!-- TODO department, manager, grade with async pipe  -->
 

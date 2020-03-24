@@ -1,3 +1,4 @@
+import { GradeType } from './../../models/grade-type.model';
 import { Employee } from './../../models/employee.model';
 import { Department } from './../../models/department.model';
 import { AdminService } from 'src/app/services/admin.service';
@@ -6,7 +7,6 @@ import { MaritalStatus } from './../../models/marital-status.model';
 import { CustomValidators } from './custom-validators';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { s } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-employee-add',
@@ -20,8 +20,10 @@ export class EmployeeAddComponent implements OnInit {
   genders = Gender;
   departments : Department[] = [];
   managers : Employee[] = [];
+  grades: GradeType[] = [];
 
   employeeForm: FormGroup;
+  test;
 
   constructor(private service: AdminService) { }
 
@@ -34,10 +36,11 @@ export class EmployeeAddComponent implements OnInit {
       empMaritalStatus: new FormControl('', Validators.required),
       empGender: new FormControl('', Validators.required),
       empDepartmentId: new FormControl('', Validators.required),
-      empManagerId: new FormControl('', Validators.required)
+      empManagerId: new FormControl('', Validators.required),
+      empGrade: new FormControl('', Validators.required)
     });
-
     this.service.departmentEmitter.subscribe(response => this.departments = response)
+    this.service.gradeEmitter.subscribe(response => this.grades = response);
     this.service.employeeListChanged.subscribe(response => response ? this.managers = this.service.getManagerList() : null);
   }
 
