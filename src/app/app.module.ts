@@ -15,6 +15,7 @@ import { AlertComponent } from './shared/alert/alert.component';
 import { ManagerInfoPipe } from './shared/manager-info.pipe';
 import { FullNamePipe } from './shared/full-name.pipe';
 import { CalAgePipe } from './shared/cal-age.pipe';
+import { GradeTypePipe } from './shared/grade-type.pipe';
 
 const routes: Routes = [
   // Below patch is a place holder until other features are not implemented
@@ -44,7 +45,8 @@ const routes: Routes = [
     AlertComponent,
     ManagerInfoPipe,
     FullNamePipe,
-    CalAgePipe
+    CalAgePipe,
+    GradeTypePipe
   ],
   imports: [
     BrowserModule,
