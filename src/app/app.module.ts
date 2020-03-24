@@ -12,6 +12,8 @@ import { EmployeeListComponent } from './admin/employee-list/employee-list.compo
 import { HttpClientModule } from '@angular/common/http';
 import { EmployeeDetailsComponent } from './admin/employee-details/employee-details.component';
 import { AlertComponent } from './shared/alert/alert.component';
+import { ManagerInfoPipe } from './shared/manager-info.pipe';
+import { FullNamePipe } from './shared/full-name.pipe';
 
 const routes: Routes = [
   // Below patch is a place holder until other features are not implemented
@@ -38,7 +40,9 @@ const routes: Routes = [
     EmployeeAddComponent,
     EmployeeListComponent,
     EmployeeDetailsComponent,
-    AlertComponent
+    AlertComponent,
+    ManagerInfoPipe,
+    FullNamePipe
   ],
   imports: [
     BrowserModule,
