@@ -1,28 +1,3 @@
-Skip to content
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@Gagandeep39 
-Gagandeep39
-/
-angular-recipe-book
-1
-00
- Code Pull requests 0 Actions Security Insights Settings
-Attempt 30
-master @Gagandeep39  c157ecb
- 
-Deploy to GitHub Pages
-on: push
- 
-Deploy to GitHub Pages
-This run
-Workflow file
-.github/workflows/main.yml
 name: Deploy to GitHub Pages
 
 on:
