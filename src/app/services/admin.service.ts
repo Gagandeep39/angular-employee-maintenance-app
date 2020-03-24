@@ -1,3 +1,4 @@
+import { Department } from './../models/department.model';
 import { environment } from './../../environments/environment.prod';
 import { Employee } from './../models/employee.model';
 import { Injectable } from '@angular/core';
@@ -9,15 +10,20 @@ import { Subject, BehaviorSubject } from 'rxjs';
 })
 export class AdminService {
   employees: Employee[];
+  departments: Department[];
 
   employeeEmitter = new BehaviorSubject<Employee[]>(null);
   employeeErrorEmitter = new Subject<string>();
+  employeeListChanged = new BehaviorSubject<void>(null);
+
+  departmentEmitter = new BehaviorSubject<Department[]>(null);
 
   constructor(private http: HttpClient) {
-    this.http.get<Employee[]>(environment.employeeRepositoryUrl).subscribe(
+    this.http.get<Employee[]>(environment.employeeRepositoryUrl + environment.employeeTable).subscribe(
       response => {
         this.employees = response;
         this.employeeEmitter.next(this.employees.slice());
+        this.employeeListChanged.next(null);
         console.log(this.employees);
       },
       error => {
@@ -26,6 +32,20 @@ export class AdminService {
       },
       () => {
         console.log('Fetched all employees successfully');
+      }
+    );
+
+    this.http.get<Department[]>(environment.employeeRepositoryUrl + environment.departmentTable).subscribe(
+      response => {
+        this.departments = response;
+        this.departmentEmitter.next(this.departments.slice());
+      },
+      error=>{
+        // Create an emitter for error
+      },
+      ()=> {
+        console.log('Fetched all departments successfully');
+
       }
     );
   }
@@ -38,14 +58,14 @@ export class AdminService {
   // Post
   addEmployee(employee: Employee) {
     this.http.post<Employee>(
-      environment.employeeRepositoryUrl + employee.id,
+      environment.employeeRepositoryUrl + environment.employeeTable + employee.id,
       employee
     );
   }
 
   // Put -
   updateEmployee(employee: Employee) {
-    this.http.delete<Employee>(environment.employeeRepositoryUrl + employee.id);
+    this.http.delete<Employee>(environment.employeeRepositoryUrl + environment.employeeTable + employee.id);
   }
 
   sortByName() {
@@ -70,6 +90,11 @@ export class AdminService {
     }
     return null;
   }
+
+  getManagerList() {
+    return this.employees.filter(emp => emp.empDesignation === 'Manager').slice();
+  }
+
 }
 
 /**
