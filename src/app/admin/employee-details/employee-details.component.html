@@ -29,11 +29,11 @@
       </div>
       <div class="col-5">
         <!-- <div class="col-md-9 col-lg-9"> -->
-        <table class="table table-user-information">
+        <table class="table table-user-information table-hover">
           <tbody>
             <tr>
               <td class="title"> Date of birth</td>
-              <td> {{ employee?.empDateOfBirth  }} </td>
+              <td> {{ employee?.empDateOfBirth }} </td>
             </tr>
             <tr>
               <td class="title">Hire date</td>
@@ -41,7 +41,7 @@
             </tr>
             <tr>
               <td class="title">Age</td>
-              <td> {{ employee?.empDateOfBirth }} </td>
+              <td> {{ employee?.empDateOfBirth | calAge }} </td>
             </tr>
 
             <tr>
@@ -68,7 +68,7 @@
         <!-- </div> -->
       </div>
       <div class="col-5">
-        <table class="table table-user-information">
+        <table class="table table-user-information table-hover">
 
           <tbody>
 
