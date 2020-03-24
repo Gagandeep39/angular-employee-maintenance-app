@@ -5,7 +5,7 @@
 @modify date 2020-03-24 23:22:28
 -->
 
-<div class="container">
+<div class="container-fluid">
 
   <form class="well form-horizontal" [formGroup]="employeeForm" (ngSubmit)="submitForm()">
 
@@ -14,7 +14,8 @@
     <legend>
       <h2><b>Registration Form</b></h2>
     </legend><br>
-    <div class="row" style="background-color: beige;">
+    <div>
+      <div class="row" style="background-color: beige;">
       <!-- First Name  -->
       <div class="col">
         <div class="form-group">
@@ -196,7 +197,9 @@
     </div>
     <div class="row">
       <!-- Contact number  -->
+
       <!-- Email  -->
+    </div>
     </div>
     <div class="row">
       <button class="btn btn-primary" type="submit">Submit</button>
@@ -207,4 +210,5 @@
   </pre>
 </div>
 <!-- TODO department, manager, grade with async pipe  -->
+<!-- TODO Implement multiple phone number  -->
 

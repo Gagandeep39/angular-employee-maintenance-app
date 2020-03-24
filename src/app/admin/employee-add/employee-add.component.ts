@@ -46,7 +46,15 @@ export class EmployeeAddComponent implements OnInit {
       empDepartmentId: new FormControl('', Validators.required),
       empManagerId: new FormControl('', Validators.required),
       empGrade: new FormControl('', Validators.required),
-      empBasic: new FormControl('',[ Validators.required, (control: FormControl)=> CustomValidators.forbiddenSalary(this.selectedGrade)(control)])
+      empBasic: new FormControl('',[ Validators.required, (control: FormControl)=> CustomValidators.forbiddenSalary(this.selectedGrade)(control)]),
+      empContactNumber: new FormControl('', Validators.required),
+      empHomeAddress: new FormGroup({
+        street: new FormControl('', Validators.required),
+        landmark: new FormControl('', Validators.required),
+        city: new FormControl('', Validators.required),
+        state: new FormControl('', Validators.required),
+        pincode: new FormControl('', [Validators.required, Validators.pattern('[0-9]{6}')])
+      })
     });
     this.service.departmentEmitter.subscribe(response => this.departments = response)
     this.service.gradeEmitter.subscribe(response => this.grades = response);
