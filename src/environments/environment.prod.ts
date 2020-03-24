@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  employeeRepositoryUrl: 'http://attempt1-server.herokuapp.com/employee'
+  employeeRepositoryUrl: 'https://attempt1-server.herokuapp.com/employee'
 };
