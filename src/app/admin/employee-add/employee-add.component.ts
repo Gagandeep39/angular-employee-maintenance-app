@@ -1,4 +1,4 @@
-import { Gender } from './../../models/Gender.model';
+import { Gender } from './../../models/gender.model';
 import { MaritalStatus } from './../../models/marital-status.model';
 import { CustomValidators } from './custom-validators';
 import { Component, OnInit } from '@angular/core';
