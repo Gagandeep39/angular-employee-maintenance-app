@@ -1,3 +1,5 @@
+import { GradeType } from './../models/grade-type.model';
+import { Grade } from './../models/grade.model';
 import { Department } from './../models/department.model';
 import { environment } from './../../environments/environment.prod';
 import { Employee } from './../models/employee.model';
@@ -10,13 +12,13 @@ import { Subject, BehaviorSubject } from 'rxjs';
 })
 export class AdminService {
   employees: Employee[];
-  departments: Department[];
 
   employeeEmitter = new BehaviorSubject<Employee[]>(null);
   employeeErrorEmitter = new Subject<string>();
   employeeListChanged = new BehaviorSubject<boolean>(false);
 
   departmentEmitter = new BehaviorSubject<Department[]>(null);
+  gradeEmitter = new BehaviorSubject<GradeType[]>(null);
 
   constructor(private http: HttpClient) {
     this.http.get<Employee[]>(environment.employeeRepositoryUrl + environment.employeeTable).subscribe(
@@ -37,8 +39,7 @@ export class AdminService {
 
     this.http.get<Department[]>(environment.employeeRepositoryUrl + environment.departmentTable).subscribe(
       response => {
-        this.departments = response;
-        this.departmentEmitter.next(this.departments.slice());
+        this.departmentEmitter.next(response.slice());
       },
       error=>{
         // Create an emitter for error
@@ -48,6 +49,18 @@ export class AdminService {
 
       }
     );
+
+    this.http.get<GradeType[]>(environment.employeeRepositoryUrl + environment.gradeTable).subscribe(
+      response => {
+        this.gradeEmitter.next(response.slice());
+      },
+      (error) => {
+        // Error
+      },
+      () => {
+        console.log('Fetched all grades successfully');
+      }
+    )
   }
 
   // Get
