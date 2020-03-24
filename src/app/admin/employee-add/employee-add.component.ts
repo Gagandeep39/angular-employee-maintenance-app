@@ -38,7 +38,7 @@ export class EmployeeAddComponent implements OnInit {
     });
 
     this.service.departmentEmitter.subscribe(response => this.departments = response)
-    this.service.employeeListChanged.subscribe(() => this.managers = this.service.getManagerList());
+    this.service.employeeListChanged.subscribe(response => response ? this.managers = this.service.getManagerList() : null);
   }
 
   submitForm() {

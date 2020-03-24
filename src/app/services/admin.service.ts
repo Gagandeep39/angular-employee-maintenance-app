@@ -14,7 +14,7 @@ export class AdminService {
 
   employeeEmitter = new BehaviorSubject<Employee[]>(null);
   employeeErrorEmitter = new Subject<string>();
-  employeeListChanged = new BehaviorSubject<void>(null);
+  employeeListChanged = new BehaviorSubject<boolean>(false);
 
   departmentEmitter = new BehaviorSubject<Department[]>(null);
 
@@ -23,7 +23,7 @@ export class AdminService {
       response => {
         this.employees = response;
         this.employeeEmitter.next(this.employees.slice());
-        this.employeeListChanged.next(null);
+        this.employeeListChanged.next(true);
         console.log(this.employees);
       },
       error => {
