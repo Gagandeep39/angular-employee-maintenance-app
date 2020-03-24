@@ -3,5 +3,6 @@ export const environment = {
   employeeRepositoryUrl: 'https://attempt1-server.herokuapp.com',
   employeeTable: '/employee',
   departmentTable: '/department',
-  userTable: '/user'
+  userTable: '/user',
+  gradeTable: '/grades'
 };
