@@ -69,17 +69,15 @@ export class AdminService {
   }
 
   sortByName() {
-    this.employees.sort((a, b) => {
+    return this.employees.sort((a, b) => {
       return a.empFirstName > b.empFirstName ? 1 : -1;
-    });
-    this.employeeEmitter.next(this.employees.slice());
+    }).slice();
   }
 
   sortById() {
-    this.employees.sort((a, b) => {
+    return this.employees.sort((a, b) => {
       return a.id - b.id;
-    });
-    this.employeeEmitter.next(this.employees.slice());
+    }).slice();
   }
 
   // Uses Index for now

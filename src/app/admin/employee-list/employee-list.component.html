@@ -1,7 +1,7 @@
 <table class="table table-striped table-bordered text-center table-hover">
   <thead>
   <tr>
-    <th class="th" scope="col">#</th>
+    <th class="th" scope="col" (click)="sortById()">#</th>
     <th class="th" scope="col" (click)="sortByName()">Name</th>
     <th class="th" scope="col">Designation</th>
     <th class="th" scope="col">Address</th>
@@ -25,3 +25,4 @@
   <app-alert [message]="error" (alertActionEvent)="handleError($event)" *ngIf="error"></app-alert>
 </div>
 <!-- TODO - Create a Loading Screen until data is fetching  -->
+<!-- TODO - Sory by other elements  -->
