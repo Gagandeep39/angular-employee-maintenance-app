@@ -1,3 +1,10 @@
+<!--
+@author Gagandeep Singh
+@email singh.gagandeep3911@gmail.com
+@create date 2020-03-24 23:22:28
+@modify date 2020-03-24 23:22:28
+-->
+
 <div class="container">
 
   <form class="well form-horizontal" [formGroup]="employeeForm" (ngSubmit)="submitForm()">
@@ -158,15 +165,34 @@
           <select
           name="empgrade"
           id="empgrade"
+          (change)="gradeIsSelected($event)"
           formControlName="empGrade"
           [ngClass]="{'is-invalid': submitted && employeeForm.get('empGrade').invalid}"
           class="custom-select">
-              <option *ngFor="let grade of grades" [value]="grade.grade"> {{ grade | gradeType}} </option>
+              <option *ngFor="let grade of grades; let i = index;" [value]="grade.grade" #lol> {{ grade | gradeType}} </option>
           </select>
           <div class="invalid-feedback" *ngIf="submitted && employeeForm.get('empGrade').invalid">Select a Grade</div>
         </div>
       </div>
       <!-- Salaray  -->
+      <div class="col">
+        <div class="form-group" *ngIf="employeeForm.get('empGrade').valid">
+          <label for="salary">Salary</label>
+          <input
+          formControlName="empBasic"
+          id="salary"
+          class="form-control"
+          [ngClass]="{'is-invalid': submitted && employeeForm.get('empBasic').invalid}"
+          type="number"
+          name="salary"
+          placeholder="Enter Salary">
+          <div class="invalid-feedback" *ngIf="submitted && employeeForm.get('empBasic').invalid">
+            <div *ngIf="employeeForm.get('empBasic').errors['required']">* Required</div>
+            <div *ngIf="employeeForm.get('empBasic').errors['salaryIsForbidden']">Salary must be between {{ selectedGrade | gradeType }}</div>
+          </div>
+
+        </div>
+      </div>
     </div>
     <div class="row">
       <!-- Contact number  -->
