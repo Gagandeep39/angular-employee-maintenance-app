@@ -1,7 +1,7 @@
 <div class="container">
   <div class="panel panel-info">
     <div class="panel-heading">
-      <h2 class="panel-title" style="text-align: left;">Sheena Shrestha</h2>
+      <h2 class="panel-title" style="text-align: left;"> {{ employee?.empFirstName | fullName:employee?.empLastName }} </h2>
     </div>
     <div class="row panel-body">
 
@@ -33,34 +33,34 @@
           <tbody>
             <tr>
               <td class="title"> Date of birth</td>
-              <td> {{ employee.empDateOfBirth }} </td>
+              <td> {{ employee?.empDateOfBirth  }} </td>
             </tr>
             <tr>
               <td class="title">Hire date</td>
-              <td> {{ employee.empDateOfJoining }} </td>
+              <td> {{ employee?.empDateOfJoining }} </td>
             </tr>
             <tr>
               <td class="title">Age</td>
-              <td> 99 </td>
+              <td> {{ employee?.empDateOfBirth }} </td>
             </tr>
 
             <tr>
             <tr>
               <td class="title">Gender</td>
-              <td> {{employee.empGender}} </td>
+              <td> {{employee?.empGender}} </td>
             </tr>
             <tr>
               <td class="title">Marital Status</td>
-              <td> {{employee.empMaritalStatus}} </td>
+              <td> {{employee?.empMaritalStatus}} </td>
             </tr>
             <tr>
               <td class="title">Contact Number</td>
-              <td> {{ employee.empContactNumber }} </td>
+              <td> {{ employee?.empContactNumber }} </td>
             </tr>
 
             <tr>
               <td class="title">Home Address</td>
-              <td> {{ employee.empHomeAddress }} </td>
+              <td> {{ employee?.empHomeAddress }} </td>
             </tr>
           </tbody>
         </table>
@@ -74,23 +74,23 @@
 
             <tr>
               <td class="title">Department ID</td>
-              <td> {{ employee.empDepartmentId }} </td>
+              <td> {{ employee?.empDepartmentId }} </td>
             </tr>
             <tr>
               <td class="title">Manager ID</td>
-              <td> {{ employee.empManagerId }} </td>
+              <td> {{ employee?.empManagerId }} </td>
             </tr>
             <tr>
               <td class="title">Grade</td>
-              <td> {{ employee.empGrade }} </td>
+              <td> {{ employee?.empGrade }} </td>
             </tr>
             <tr>
               <td class="title">Designation</td>
-              <td> {{ employee.empDesignation }} </td>
+              <td> {{ employee?.empDesignation }} </td>
             </tr>
             <tr>
               <td class="title">Salary</td>
-              <td> {{ employee.empBasic }} </td>
+              <td> {{ employee?.empBasic }} </td>
             </tr>
           </tbody>
         </table>
