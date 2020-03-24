@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { Routes, RouterModule } from '@angular/router';
 import { AdminHeaderComponent } from './admin/admin-header/admin-header.component';
@@ -26,7 +27,7 @@ const routes: Routes = [
       { path: 'list/:id/details', component: EmployeeDetailsComponent },
       { path: '**', redirectTo: 'list' }
     ]
-  },
+  }
 ];
 
 @NgModule({
@@ -39,7 +40,12 @@ const routes: Routes = [
     EmployeeDetailsComponent,
     AlertComponent
   ],
-  imports: [BrowserModule, RouterModule.forRoot(routes), HttpClientModule],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(routes),
+    HttpClientModule,
+    ReactiveFormsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
