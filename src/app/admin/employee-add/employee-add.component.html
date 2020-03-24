@@ -1,3 +1,150 @@
-<p>
-  employee-add works!
-</p>
+<script>
+  $(function() {
+      $('.datepicker').datepicker({
+          format: 'mm-dd-yyyy',
+          endDate: '+0d',
+          autoclose: true
+      });
+  });
+</script>
+<div class="container">
+
+  <form class="well form-horizontal" [formGroup]="employeeForm" (ngSubmit)="submitForm()">
+
+    <!-- Form Name -->
+
+    <legend>
+      <h2><b>Registration Form</b></h2>
+    </legend><br>
+    <div class="row" style="background-color: beige;">
+      <!-- First Name  -->
+      <div class="col">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input
+          formControlName="empFirstName"
+          id="firstName"
+          class="form-control"
+          [ngClass]="{'is-invalid': submitted && employeeForm.get('empFirstName').invalid}"
+          type="text"
+          name="firtName"
+          placeholder="Enter First Name">
+          <div class="invalid-feedback" *ngIf="submitted && employeeForm.get('empFirstName').invalid">
+            <div *ngIf="employeeForm.get('empFirstName').errors['required']">* Required</div>
+          </div>
+
+        </div>
+      </div>
+      <!-- Last name  -->
+      <div class="col">
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input
+          formControlName="empLastName"
+          type="text"
+          name="lastName"
+          id="lastName"
+          class="form-control"
+          [ngClass]="{'is-invalid': submitted && employeeForm.get('empLastName').invalid}"
+          placeholder="Enter Last Name">
+          <div class="invalid-feedback" *ngIf="submitted && employeeForm.get('empLastName').invalid">
+            <div *ngIf="employeeForm.get('empLastName').errors['required']">* Required</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="background-color: lightblue;">
+      <!-- date of birth   -->
+      <div class="col">
+        <div class="form-group">
+          <label for="dob">Date of Birth</label>
+          <input
+          formControlName="empDateOfBirth"
+          data-date-end-date="0d"
+          type="date"
+          id="dob"
+          name="dob"
+          class="form-control date-picker"
+          [ngClass]="{'is-invalid': submitted && employeeForm.get('empDateOfBirth').invalid}"
+          >
+          <div class="invalid-feedback" *ngIf="submitted && employeeForm.get('empDateOfBirth').invalid">
+            <div *ngIf="employeeForm.get('empDateOfBirth').errors['required']">* Required</div>
+            <div *ngIf="employeeForm.get('empDateOfBirth').errors['ageIsForbidden']">Employee's Age must be between 18 and 58</div>
+            <!-- TODO - Do not show future dates  -->
+          </div>
+        </div>
+      </div>
+      <!-- Join date  -->
+      <div class="col">
+        <div class="form-group">
+          <label for="dob">Date of Joining</label>
+          <input
+          formControlName="empDateOfJoining"
+          type="date"
+          id="dob"
+          name="dob"
+          class="form-control"
+          [ngClass]="{'is-invalid': submitted && employeeForm.get('empDateOfJoining').invalid}"
+          >
+          <div class="invalid-feedback" *ngIf="submitted && employeeForm.get('empDateOfJoining').invalid">
+            <div *ngIf="employeeForm.get('empDateOfJoining').errors['required']">* Required</div>
+            <div *ngIf="employeeForm.get('empDateOfJoining').errors['futureDateForbidden']">* Required</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="background-color: lightgrey;">
+      <!-- Marital status  -->
+      <div class="col">
+        <div class="form-group">
+          <label for="status">Matital Status</label>
+          <select
+          name="status"
+          id="status"
+          formControlName="empMaritalStatus"
+          [ngClass]="{'is-invalid': submitted && employeeForm.get('empMaritalStatus').invalid}"
+          class="custom-select">
+              <option *ngFor="let s of maritalStatus | keyvalue" [value]="s.key"> {{s.value}} </option>
+          </select>
+          <div class="invalid-feedback" *ngIf="submitted && employeeForm.get('empMaritalStatus').invalid">Select a Value</div>
+      </div>
+      </div>
+      <!-- Gender  -->
+      <div class="col">
+        <label>Gender</label>
+          <div *ngFor="let gender of genders | keyvalue" class="custom-control custom-radio">
+            <input
+            formControlName="empGender"
+              [ngClass]="{'is-invalid':submitted && employeeForm.get('empGender').invalid}"
+              [value]="gender.key"
+              class="custom-control-input"
+              id="{{gender.key}}"
+              type="radio">
+            <label class="custom-control-label" for="{{gender.key}}">{{gender.key}}</label>
+          </div>
+          <div *ngIf="submitted && employeeForm.get('empGender').invalid" class="text-danger">
+            <small>Select an Option</small>
+          </div>
+      </div>
+    </div>
+    <div class="row">
+      <!-- Deprtment  -->
+      <!-- Manager  -->
+    </div>
+    <div class="row">
+      <!-- Grade  -->
+      <!-- Salaray  -->
+    </div>
+    <div class="row">
+      <!-- Contact number  -->
+      <!-- Email  -->
+    </div>
+    <div class="row">
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+  </form>
+  <pre>
+    {{ employeeForm.value | json }}
+  </pre>
+</div>
+
