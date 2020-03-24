@@ -14,6 +14,7 @@ import { EmployeeDetailsComponent } from './admin/employee-details/employee-deta
 import { AlertComponent } from './shared/alert/alert.component';
 import { ManagerInfoPipe } from './shared/manager-info.pipe';
 import { FullNamePipe } from './shared/full-name.pipe';
+import { CalAgePipe } from './shared/cal-age.pipe';
 
 const routes: Routes = [
   // Below patch is a place holder until other features are not implemented
@@ -42,7 +43,8 @@ const routes: Routes = [
     EmployeeDetailsComponent,
     AlertComponent,
     ManagerInfoPipe,
-    FullNamePipe
+    FullNamePipe,
+    CalAgePipe
   ],
   imports: [
     BrowserModule,
