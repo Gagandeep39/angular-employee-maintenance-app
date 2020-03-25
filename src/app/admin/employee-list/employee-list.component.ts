@@ -26,6 +26,8 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   constructor(private adminService: AdminService) {}
 
   ngOnInit() {
+    // Manual call to ask for updated data from server
+    this.adminService.fetchFromServer();
     this.errorSubscription = this.adminService.employeeErrorEmitter.subscribe(
       response => {
         this.error = response;

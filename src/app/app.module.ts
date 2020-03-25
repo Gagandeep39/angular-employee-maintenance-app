@@ -1,63 +1,32 @@
+/**
+ * @author Gagandeep Singh
+ * @email singh.gagandeep3911@gmail.com
+ * @create date 2020-03-25 21:17:48
+ * @modify date 2020-03-25 21:17:48
+ * @desc Root application
+ */
+
+
+import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { AdminComponent } from './admin/admin.component';
-import { ReactiveFormsModule } from '@angular/forms';
-
-import { Routes, RouterModule } from '@angular/router';
-import { AdminHeaderComponent } from './admin/admin-header/admin-header.component';
-import { EmployeeAddComponent } from './admin/employee-add/employee-add.component';
-import { EmployeeListComponent } from './admin/employee-list/employee-list.component';
 import { HttpClientModule } from '@angular/common/http';
-import { EmployeeDetailsComponent } from './admin/employee-details/employee-details.component';
-import { AlertComponent } from './shared/alert/alert.component';
-import { ManagerInfoPipe } from './shared/manager-info.pipe';
-import { FullNamePipe } from './shared/full-name.pipe';
-import { CalAgePipe } from './shared/cal-age.pipe';
-import { GradeTypePipe } from './shared/grade-type.pipe';
-import { UserAddComponent } from './admin/user-add/user-add.component';
-import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
-
-const routes: Routes = [
-  // Below patch is a place holder until other features are not implemented
-  { path: '', redirectTo: 'admin', pathMatch: 'full' },
-  {
-    path: 'admin',
-    component: AdminComponent,
-    children: [
-      { path: '', redirectTo: 'list', pathMatch: 'full' },
-      { path: 'adduser', component: UserAddComponent },
-      { path: 'list', component: EmployeeListComponent },
-      { path: 'addemp', component: EmployeeAddComponent },
-      { path: ':id/updateemp', component: EmployeeAddComponent },
-      { path: 'list/:id/details', component: EmployeeDetailsComponent },
-      { path: '**', redirectTo: 'list' }
-    ]
-  }
-];
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AdminComponent,
-    AdminHeaderComponent,
-    EmployeeAddComponent,
-    EmployeeListComponent,
-    EmployeeDetailsComponent,
-    AlertComponent,
-    ManagerInfoPipe,
-    FullNamePipe,
-    CalAgePipe,
-    GradeTypePipe,
-    UserAddComponent,
-    LoadingSpinnerComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes),
     HttpClientModule,
-    ReactiveFormsModule
+    // Custom Modules
+    AppRoutingModule,
+    // To Enable Eager loading
+    // 1. UnComment below Modules
+    // 2. Comment the paths in pp-routing
+    // 3. Set the path as 'admin' in admin-routing.module instead of ''
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]
