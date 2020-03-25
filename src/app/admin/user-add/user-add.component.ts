@@ -98,7 +98,7 @@ export class UserAddComponent implements OnInit {
 
   addUser(newUser: User) {
     this.userService.addUser(newUser).subscribe(
-      response => (this.error = 'Successfully created user with ID' + response),
+      response => (this.error = 'Successfully created Admin with ID' + response),
       error => (this.error = error)
     );
   }
