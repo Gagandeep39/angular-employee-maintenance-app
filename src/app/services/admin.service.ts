@@ -32,57 +32,7 @@ export class AdminService {
   gradeEmitter = new BehaviorSubject<GradeType[]>(null);
 
   constructor(private http: HttpClient, private userService: UserService) {
-    this.http
-      .get<Employee[]>(
-        environment.employeeRepositoryUrl + environment.employeeTable
-      )
-      .subscribe(
-        response => {
-          this.employees = response;
-          this.employeeEmitter.next(this.employees.slice());
-          this.employeeListChanged.next(true);
-          console.log(this.employees);
-        },
-        error => {
-          console.log(error);
-          this.employeeErrorEmitter.next(error.message);
-        },
-        () => {
-          console.log('Fetched all employees successfully');
-        }
-      );
-
-    this.http
-      .get<Department[]>(
-        environment.employeeRepositoryUrl + environment.departmentTable
-      )
-      .subscribe(
-        response => {
-          this.departmentEmitter.next(response.slice());
-        },
-        error => {
-          // Create an emitter for error
-        },
-        () => {
-          console.log('Fetched all departments successfully');
-        }
-      );
-
-    this.http
-      .get<GradeType[]>(
-        environment.employeeRepositoryUrl + environment.gradeTable
-      )
-      .subscribe(
-        response => {
-          this.gradeEmitter.next(response.slice());
-        },
-        error => {
-          // Error
-        },
-        () => {
-          console.log('Fetched all grades successfully');
-        }
-      );
+    this.fetchFromServer();
   }
 
   // Get
@@ -145,6 +95,60 @@ export class AdminService {
     return this.employees
       .filter(emp => emp.empDesignation === 'Manager')
       .slice();
+  }
+
+  fetchFromServer(){
+    this.http
+      .get<Employee[]>(
+        environment.employeeRepositoryUrl + environment.employeeTable
+      )
+      .subscribe(
+        response => {
+          this.employees = response;
+          this.employeeEmitter.next(this.employees.slice());
+          this.employeeListChanged.next(true);
+          console.log(this.employees);
+        },
+        error => {
+          console.log(error);
+          this.employeeErrorEmitter.next(error.message);
+        },
+        () => {
+          console.log('Fetched all employees successfully');
+        }
+      );
+
+    this.http
+      .get<Department[]>(
+        environment.employeeRepositoryUrl + environment.departmentTable
+      )
+      .subscribe(
+        response => {
+          this.departmentEmitter.next(response.slice());
+        },
+        error => {
+          // Create an emitter for error
+        },
+        () => {
+          console.log('Fetched all departments successfully');
+        }
+      );
+
+    this.http
+      .get<GradeType[]>(
+        environment.employeeRepositoryUrl + environment.gradeTable
+      )
+      .subscribe(
+        response => {
+          this.gradeEmitter.next(response.slice());
+        },
+        error => {
+          // Error
+        },
+        () => {
+          console.log('Fetched all grades successfully');
+        }
+      );
   }
 }
 
