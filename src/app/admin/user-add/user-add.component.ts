@@ -1,3 +1,6 @@
+import { take } from 'rxjs/operators';
+import { User } from './../../models/user.model';
+import { AdminService } from 'src/app/services/admin.service';
 import { ActivatedRoute } from '@angular/router';
 /**
  * @author Gagandeep Singh
@@ -13,7 +16,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { relative } from 'path';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-add',
@@ -27,21 +30,40 @@ export class UserAddComponent implements OnInit {
   submitted = false;
   userTypes = UserType;
   buttonStyle = UserType.Admin;
+  isLoading = false;
+  error = '';
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private userService: UserService
+  ) {}
   ngOnInit() {
     console.log(this.route);
 
     this.userRegisterationForm = new FormGroup(
       {
-        username: new FormControl('', Validators.required),
+        username: new FormControl(
+          '',
+          [
+            Validators.required,
+            Validators.minLength(4),
+            Validators.pattern('^[a-zA-Z][a-zA-Z0-9-_\\.]{4,12}$')
+          ],
+          CustomValidators.usernameValidator(this.userService)
+        ),
         password: new FormControl('', [
           Validators.required,
-          Validators.pattern('')
+          Validators.pattern(
+            '^(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,}$'
+          ),
+          Validators.minLength(6)
         ]),
         confirmPassword: new FormControl('', [
           Validators.required,
-          Validators.pattern('')
+          Validators.pattern(
+            '^(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,}$'
+          )
         ]),
         userType: new FormControl('', Validators.required)
       },
@@ -55,13 +77,32 @@ export class UserAddComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     if (this.userRegisterationForm.valid) {
+      this.isLoading = true;
       this.submitted = false;
-      if(this.buttonStyle === UserType.Admin) { this.router.navigate(['../list'], {relativeTo: this.route})}
-      else {this.router.navigate(['../addemp', {relativeTo: this.route}])}
+      const newUser = this.userRegisterationForm.value;
+      delete newUser.confirmPassword;
+      if (this.buttonStyle === UserType.Admin) {
+        this.addUser(newUser);
+      } else {
+        this.userService.userEmitter.next(newUser);
+        this.router.navigate(['../addemp'], { relativeTo: this.route });
+      }
     }
   }
 
   typeIsSelected(event) {
     this.buttonStyle = event.target.value;
+  }
+
+  handleOutputMessage() {
+    this.error = '';
+    this.router.navigate(['../list'], { relativeTo: this.route });
+  }
+
+  addUser(newUser: User) {
+    this.userService.addUser(newUser).subscribe(
+      response => (this.error = 'Successfully created user with ID' + response),
+      error => (this.error = error)
+    );
   }
 }

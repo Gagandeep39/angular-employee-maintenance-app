@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/services/user.service';
 /**
  * @author Gagandeep Singh
  * @email singh.gagandeep3911@gmail.com
@@ -9,8 +10,11 @@ import { GradeType } from './../../models/grade-type.model';
 import {
   FormControl,
   ValidatorFn,
-  ValidationErrors
+  AsyncValidatorFn,
+  ValidationErrors,
 } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 
 export class CustomValidators {
   static forbiddenAge(control: FormControl) {
@@ -46,5 +50,13 @@ export class CustomValidators {
     } else {
       return null;
     }
+  }
+
+  static usernameValidator(service: UserService) {
+    return (control: FormControl)=> {
+      return service.checkUser(control.value)
+      .pipe(map(response => response ? null : { usernameTaken: true }
+      ))
+    };
   }
 }

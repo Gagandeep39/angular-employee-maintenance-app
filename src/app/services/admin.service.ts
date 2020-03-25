@@ -13,8 +13,7 @@ import { environment } from './../../environments/environment.prod';
 import { Employee } from './../models/employee.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject, BehaviorSubject, throwError, Observable } from 'rxjs';
-import { map, exhaustMap, take, catchError } from 'rxjs/operators';
+import { Subject, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -138,34 +137,7 @@ export class AdminService {
       .slice();
   }
 
-  addUser(user: User) {
-    return this.http
-      .post(environment.employeeRepositoryUrl + environment.userTable, user)
-      .pipe(
-        map((response: User) => response.id),
-        catchError(error => {
-          return error;
-        })
-      );
-  }
 
-  checkUser(user: User) {
-    return this.http
-      .get<User[]>(
-        environment.employeeRepositoryUrl +
-          environment.userTable +
-          '?username=' +
-          user.username
-      )
-      .pipe(
-        take(1),
-        exhaustMap(response => {
-          if (response.length == 0) {
-            return this.addUser(user);
-          } else throwError('User already exists');
-        })
-      );
-  }
 }
 
 /**

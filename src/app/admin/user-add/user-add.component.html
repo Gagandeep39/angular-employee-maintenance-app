@@ -5,9 +5,18 @@
 @modify date 2020-03-25 13:35:46
 @desc GUI form to add a new user
 -->
+<!-- Spinner shown while waiting  -->
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+<!-- error shown  -->
+<app-alert [message]="error" (alertActionEvent)="handleOutputMessage($event)" *ngIf="error"></app-alert>
+<div class="container-fluid">
+<form [formGroup]="userRegisterationForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
 
-<div class="container">
-<form [formGroup]="userRegisterationForm" (ngSubmit)="onSubmit()">
+  <legend>
+    <h2><b>User Registration Form</b></h2>
+  </legend>
+  <hr>
+
     <!-- username  -->
     <div class="form-group">
       <label for="uname">Username</label>
@@ -21,6 +30,9 @@
       placeholder="Enter Username">
       <div class="invalid-feedback" *ngIf="submitted && userRegisterationForm.get('username').invalid">
         <div *ngIf="userRegisterationForm.get('username').errors['required']">* Required</div>
+        <div *ngIf="userRegisterationForm.get('username').errors['pattern']">Username cannot have spaces, length must be (4-12)</div>
+        <div *ngIf="userRegisterationForm.get('username').errors['minLength']">Username must have minimum 4 characters</div>
+        <div *ngIf="userRegisterationForm.get('username').errors['usernameTaken']">Username Is Taken</div>
       </div>
     </div>
     <!-- user type  -->
@@ -50,7 +62,8 @@
       placeholder="Enter Password">
       <div class="invalid-feedback" *ngIf="submitted && userRegisterationForm.get('password').invalid">
         <div *ngIf="userRegisterationForm.get('password').errors['required']">* Required</div>
-        <div *ngIf="userRegisterationForm.get('password').errors['pattern']">* Required</div>
+        <div *ngIf="userRegisterationForm.get('password').errors['pattern']">Password must contain atleast 1 uppercase, lowercase and number</div>
+        <div *ngIf="userRegisterationForm.get('password').errors['minLength']">Username must have minimum 6 characters</div>
       </div>
     </div>
     <!-- confirm password  -->
@@ -66,7 +79,7 @@
       placeholder="Re-enter Password">
       <div class="invalid-feedback" *ngIf="submitted && userRegisterationForm.get('confirmPassword').invalid">
         <div *ngIf="userRegisterationForm.get('confirmPassword').errors['required']">* Required</div>
-        <div *ngIf="userRegisterationForm.get('confirmPassword').errors['pattern']">* Required</div>
+        <div *ngIf="userRegisterationForm.get('confirmPassword').errors['pattern']">Password must contain atleast 1 uppercase, lowercase and number</div>
         <div *ngIf="userRegisterationForm.get('confirmPassword').errors['passwordMatchError']">Passwords are not same</div>
       </div>
     </div>
