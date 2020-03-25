@@ -16,6 +16,7 @@ import { ManagerInfoPipe } from './shared/manager-info.pipe';
 import { FullNamePipe } from './shared/full-name.pipe';
 import { CalAgePipe } from './shared/cal-age.pipe';
 import { GradeTypePipe } from './shared/grade-type.pipe';
+import { UserAddComponent } from './admin/user-add/user-add.component';
 
 const routes: Routes = [
   // Below patch is a place holder until other features are not implemented
@@ -25,9 +26,10 @@ const routes: Routes = [
     component: AdminComponent,
     children: [
       { path: '', redirectTo: 'list', pathMatch: 'full' },
+      { path: 'adduser', component: UserAddComponent },
       { path: 'list', component: EmployeeListComponent },
-      { path: 'add', component: EmployeeAddComponent },
-      { path: ':id/update', component: EmployeeAddComponent },
+      { path: 'addemp', component: EmployeeAddComponent },
+      { path: ':id/updateemp', component: EmployeeAddComponent },
       { path: 'list/:id/details', component: EmployeeDetailsComponent },
       { path: '**', redirectTo: 'list' }
     ]
@@ -46,7 +48,8 @@ const routes: Routes = [
     ManagerInfoPipe,
     FullNamePipe,
     CalAgePipe,
-    GradeTypePipe
+    GradeTypePipe,
+    UserAddComponent
   ],
   imports: [
     BrowserModule,
