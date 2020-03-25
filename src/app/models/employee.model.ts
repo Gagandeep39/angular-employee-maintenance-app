@@ -1,3 +1,4 @@
+import { Address } from './address.model';
 import { MaritalStatus } from './marital-status.model';
 import { Grade } from './grade.model';
 import { Designation } from './designation.model';
@@ -20,7 +21,7 @@ export class Employee {
     public empBasic: number,
     public empGender: Gender,
     public empMaritalStatus: MaritalStatus,
-    public empHomeAddress: string,
+    public empHomeAddress: Address,
     public empContactNumber: string,
     public empManagerId: number
   ) {}
