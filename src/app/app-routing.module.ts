@@ -9,7 +9,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   // Below patch is a place holder until login features are not implemented
-  { path: '', redirectTo: 'admin', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   // To enable Lazy loading
   // 1. UnComment the below imported modules
   // 2. Comment Imported feature Modules in app.routing
