@@ -15,7 +15,7 @@
         <div class="row">
           <div class="col">
 
-            <button type="button" class="btn btn-success btn-block m-1">Edit</button>
+            <button type="button" [disabled]="true" class="btn btn-success btn-block m-1">Edit</button>
           </div>
           <div class="col">
 
@@ -59,8 +59,20 @@
             </tr>
 
             <tr>
-              <td class="title">Home Address</td>
-              <td> {{ employee?.empHomeAddress }} </td>
+              <td class="title">Street</td>
+              <td> {{ employee?.empHomeAddress.street }} </td>
+            </tr>
+            <tr>
+              <td class="title">Area</td>
+              <td> {{ employee?.empHomeAddress.landmark }} </td>
+            </tr>
+            <tr>
+              <td class="title">City</td>
+              <td> {{ employee?.empHomeAddress.city }} </td>
+            </tr>
+            <tr>
+              <td class="title">Pincode</td>
+              <td> {{ employee?.empHomeAddress.pincode }} </td>
             </tr>
           </tbody>
         </table>

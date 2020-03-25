@@ -4,7 +4,7 @@
     <th class="th" scope="col" (click)="sortById()">#</th>
     <th class="th" scope="col" (click)="sortByName()">Name</th>
     <th class="th" scope="col">Designation</th>
-    <th class="th" scope="col">Address</th>
+    <th class="th" scope="col">City</th>
     <th class="th" scope="col">Start Date</th>
     <th class="th" scope="col">Salary</th>
     <th class="th" scope="col">View Data</th>
@@ -14,7 +14,7 @@
     <td> {{ emp.id }} </td>
     <td> {{ emp.empFirstName + ' ' +  emp.empLastName }} </td>
     <td> {{ emp.empDesignation }} </td>
-    <td> {{ emp.empHomeAddress }} </td>
+    <td> {{ emp.empHomeAddress.city }} </td>
     <td> {{ emp.empDateOfJoining }} </td>
     <td> {{ emp.empBasic | currency }} </td>
     <td> <button type="button" class="btn btn-primary" [routerLink]="[i, 'details']" routerLinkActive="router-link-active" >View</button> </td>
