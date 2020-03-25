@@ -215,11 +215,10 @@
       </div>
       </div>
 
-      <!-- Username  -->
       <div class="col">
-        <!-- Contact number  -->
+        <!-- Email  -->
       <div class="form-group">
-        <label for="emailid">Contact Number</label>
+        <label for="emailid">Email ID</label>
         <input
         formControlName="empEmailId"
         id="emailid"
@@ -238,22 +237,84 @@
     <div formGroupName="empHomeAddress">
       <div class="row">
         <!-- Street  -->
-        <div class="col"></div>
+        <div class="col">
+          <div class="form-group">
+            <label for="street">Street</label>
+            <input
+              formControlName="street"
+              id="street"
+              class="form-control"
+              [ngClass]="{'is-invalid': submitted && employeeForm.get('empHomeAddress.street').invalid}"
+              type="text"
+              name="street"
+              placeholder="Enter Street details">
+              <div class="invalid-feedback" *ngIf="submitted && employeeForm.get('empHomeAddress.street').invalid">
+                <div *ngIf="employeeForm.get('empHomeAddress.street').errors['required']">* Required</div>
+              </div>
+          </div>
+        </div>
         <!-- landmark  -->
-        <div class="col"></div>
+        <div class="col">
+          <div class="form-group">
+            <label for="landmark">Nearest Landmark</label>
+            <input
+              formControlName="landmark"
+              id="landmark"
+              class="form-control"
+              [ngClass]="{'is-invalid': submitted && employeeForm.get('empHomeAddress.landmark').invalid}"
+              type="text"
+              name="landmark"
+              placeholder="Enter Landmark">
+              <div class="invalid-feedback" *ngIf="submitted && employeeForm.get('empHomeAddress.landmark').invalid">
+                <div *ngIf="employeeForm.get('empHomeAddress.landmark').errors['required']">* Required</div>
+              </div>
+          </div>
+        </div>
       </div>
       <div class="row">
         <!-- city  -->
-        <div class="col"></div>
+        <div class="col">
+          <div class="form-group">
+          <label for="city">City</label>
+          <input
+            formControlName="city"
+            id="city"
+            class="form-control"
+            [ngClass]="{'is-invalid': submitted && employeeForm.get('empHomeAddress.city').invalid}"
+            type="text"
+            name="city"
+            placeholder="Enter City name">
+            <div class="invalid-feedback" *ngIf="submitted && employeeForm.get('empHomeAddress.city').invalid">
+              <div *ngIf="employeeForm.get('empHomeAddress.city').errors['required']">* Required</div>
+            </div>
+
+            </div>
+        </div>
         <!-- pincode  -->
-        <div class="col"></div>
+        <div class="col">
+          <div class="form-group">
+            <label for="pcode">Area Pincode</label>
+            <input
+            formControlName="pincode"
+            id="pcode"
+            class="form-control"
+            [ngClass]="{'is-invalid': submitted && employeeForm.get('empHomeAddress.pincode').invalid}"
+            type="number"
+            name="pcode"
+            placeholder="Enter Pincode">
+            <div class="invalid-feedback" *ngIf="submitted && employeeForm.get('empHomeAddress.pincode').invalid">
+              <div *ngIf="employeeForm.get('empHomeAddress.pincode').errors['required']">* Required</div>
+              <div *ngIf="employeeForm.get('empHomeAddress.pincode').errors['pattern']">Must be 6 digits</div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
     </div>
     <div class="row">
       <button class="btn btn-primary" type="submit">Submit</button>
     </div>
-  </form>
+    </div>
+    </form>
   <pre>
     {{ employeeForm.value | json }}
   </pre>
