@@ -22,13 +22,13 @@ export class CustomValidators {
     const today = new Date();
     const diff = today.getFullYear() - dob.getFullYear();
 
-    if (diff < 18 || diff > 58) return { ageIsForbidden: true };
+    if (diff < 18 || diff > 58) { return { ageIsForbidden: true }; }
     return null;
   }
 
   static forbidFutureDate(control: FormControl) {
     const dob = new Date(control.value);
-    if (dob > new Date()) return { futureDateForbidden: true };
+    if (dob > new Date()) { return { futureDateForbidden: true }; }
     return null;
   }
 
@@ -43,8 +43,8 @@ export class CustomValidators {
   }
 
   static matchPassword(control: FormControl) {
-    let password = control.get('password').value;
-    let confirmPassword = control.get('confirmPassword').value;
+    const password = control.get('password').value;
+    const confirmPassword = control.get('confirmPassword').value;
     if (password != confirmPassword) {
       control.get('confirmPassword').setErrors({ passwordMatchError: true });
     } else {
@@ -53,10 +53,10 @@ export class CustomValidators {
   }
 
   static usernameValidator(service: UserService) {
-    return (control: FormControl)=> {
+    return (control: FormControl) => {
       return service.checkUser(control.value)
       .pipe(map(response => response ? null : { usernameTaken: true }
-      ))
+      ));
     };
   }
 }
