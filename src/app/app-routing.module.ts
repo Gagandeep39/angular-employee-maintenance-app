@@ -6,29 +6,15 @@
  */
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AdminComponent } from './admin/admin.component';
-import { UserAddComponent } from './admin/user-add/user-add.component';
-import { EmployeeListComponent } from './admin/employee-list/employee-list.component';
-import { EmployeeAddComponent } from './admin/employee-add/employee-add.component';
-import { EmployeeDetailsComponent } from './admin/employee-details/employee-details.component';
-
 
 const routes: Routes = [
-  // Below patch is a place holder until other features are not implemented
+  // Below patch is a place holder until login features are not implemented
   { path: '', redirectTo: 'admin', pathMatch: 'full' },
-  {
-    path: 'admin',
-    component: AdminComponent,
-    children: [
-      { path: '', redirectTo: 'list', pathMatch: 'full' },
-      { path: 'adduser', component: UserAddComponent },
-      { path: 'list', component: EmployeeListComponent },
-      { path: 'addemp', component: EmployeeAddComponent },
-      { path: ':id/updateemp', component: EmployeeAddComponent },
-      { path: 'list/:id/details', component: EmployeeDetailsComponent },
-      { path: '**', redirectTo: 'list' }
-    ]
-  }
+  // To enable Lazy loading
+  // 1. UnComment the below imported modules
+  // 2. Comment Imported feature Modules in app.routing
+  // 3. Set the root path in modules as '' instead of 'admin'
+  // { path: 'admin', loadChildren: './admin/admin.module#AdminModule' }
 ];
 
 @NgModule({

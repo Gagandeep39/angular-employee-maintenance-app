@@ -1,38 +1,32 @@
-import { SharedModule } from './shared/shared.module';
+/**
+ * @author Gagandeep Singh
+ * @email singh.gagandeep3911@gmail.com
+ * @create date 2020-03-25 21:17:48
+ * @modify date 2020-03-25 21:17:48
+ * @desc Root application
+ */
+
+
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { AdminComponent } from './admin/admin.component';
-import { ReactiveFormsModule } from '@angular/forms';
-
-import { AdminHeaderComponent } from './admin/admin-header/admin-header.component';
-import { EmployeeAddComponent } from './admin/employee-add/employee-add.component';
-import { EmployeeListComponent } from './admin/employee-list/employee-list.component';
 import { HttpClientModule } from '@angular/common/http';
-import { EmployeeDetailsComponent } from './admin/employee-details/employee-details.component';
-import { UserAddComponent } from './admin/user-add/user-add.component';
-
-
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AdminComponent,
-    AdminHeaderComponent,
-    EmployeeAddComponent,
-    EmployeeListComponent,
-    EmployeeDetailsComponent,
-    UserAddComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule,
     // Custom Modules
     AppRoutingModule,
-    SharedModule
+    // To Enable Eager loading
+    // 1. UnComment below Modules
+    // 2. Comment the paths in pp-routing
+    // 3. Set the path as 'admin' in admin-routing.module instead of ''
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]
