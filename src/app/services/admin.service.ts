@@ -97,7 +97,7 @@ export class AdminService {
       .slice();
   }
 
-  fetchFromServer(){
+  fetchFromServer() {
     this.http
       .get<Employee[]>(
         environment.employeeRepositoryUrl + environment.employeeTable

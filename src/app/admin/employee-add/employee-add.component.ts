@@ -12,7 +12,7 @@ import { Gender } from './../../models/gender.model';
 import { MaritalStatus } from './../../models/marital-status.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Designation } from 'src/app/models/designation.model'
+import { Designation } from 'src/app/models/designation.model';
 import { CustomValidators } from 'src/app/shared/custom-validators';
 
 /**
@@ -56,7 +56,7 @@ export class EmployeeAddComponent implements OnInit {
     this.userService.userEmitter.pipe(take(1)).subscribe((response: User) => {
       console.log(response);
       this.currentUser = response;
-      if(response==undefined ||response===null ){ this.redirectToHomePage();}
+      if (response == undefined || response === null ) { this.redirectToHomePage(); }
     });
 
     this.selectedGrade = new GradeType();
@@ -134,7 +134,7 @@ export class EmployeeAddComponent implements OnInit {
   }
 
   redirectToHomePage() {
-    this.router.navigate(['../list'], {relativeTo: this.route})
+    this.router.navigate(['../list'], {relativeTo: this.route});
   }
 
   handleOutputMessage() {
