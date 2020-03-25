@@ -48,11 +48,11 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   }
 
   sortByName() {
-    if (this.employees) this.employees = this.adminService.sortByName();
+    if (this.employees) { this.employees = this.adminService.sortByName(); }
   }
 
   sortById() {
-    if (this.employees) this.employees = this.adminService.sortById();
+    if (this.employees) { this.employees = this.adminService.sortById(); }
   }
 
   handleError(event: string) {

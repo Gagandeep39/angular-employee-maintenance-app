@@ -1,6 +1,6 @@
 import { Grade } from './grade.model';
 
-export class GradeType{
+export class GradeType {
   grade: Grade;
   minSalary: number;
   maxSalary: number;
