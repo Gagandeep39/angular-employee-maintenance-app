@@ -47,7 +47,8 @@ export class EmployeeAddComponent implements OnInit {
       empManagerId: new FormControl('', Validators.required),
       empGrade: new FormControl('', Validators.required),
       empBasic: new FormControl('',[ Validators.required, (control: FormControl)=> CustomValidators.forbiddenSalary(this.selectedGrade)(control)]),
-      empContactNumber: new FormControl('', Validators.required),
+      empContactNumber: new FormControl('', [Validators.required, Validators.pattern('[7-9][0-9]{9}')]),
+      empEmailId: new FormControl('', [Validators.required, Validators.email]),
       empHomeAddress: new FormGroup({
         street: new FormControl('', Validators.required),
         landmark: new FormControl('', Validators.required),

@@ -196,9 +196,58 @@
       </div>
     </div>
     <div class="row">
-      <!-- Contact number  -->
+      <div class="col">
+        <!-- Contact number  -->
+      <div class="form-group">
+        <label for="phonenumber">Contact Number</label>
+        <input
+        formControlName="empContactNumber"
+        id="phonenumber"
+        class="form-control"
+        [ngClass]="{'is-invalid': submitted && employeeForm.get('empContactNumber').invalid}"
+        type="number"
+        name="phonenumber"
+        placeholder="Enter Contact Number">
+        <div class="invalid-feedback" *ngIf="submitted && employeeForm.get('empContactNumber').invalid">
+          <div *ngIf="employeeForm.get('empContactNumber').errors['required']">* Required</div>
+          <div *ngIf="employeeForm.get('empContactNumber').errors['pattern']">Must be 10 digits, beginning from 8/9</div>
+        </div>
+      </div>
+      </div>
 
-      <!-- Email  -->
+      <!-- Username  -->
+      <div class="col">
+        <!-- Contact number  -->
+      <div class="form-group">
+        <label for="emailid">Contact Number</label>
+        <input
+        formControlName="empEmailId"
+        id="emailid"
+        class="form-control"
+        [ngClass]="{'is-invalid': submitted && employeeForm.get('empEmailId').invalid}"
+        type="email"
+        name="emailid"
+        placeholder="Enter Email Id">
+        <div class="invalid-feedback" *ngIf="submitted && employeeForm.get('empEmailId').invalid">
+          <div *ngIf="employeeForm.get('empEmailId').errors['required']">* Required</div>
+          <div *ngIf="employeeForm.get('empEmailId').errors['pattern']">Must be 10 digits, beginning from 8/9</div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div formGroupName="empHomeAddress">
+      <div class="row">
+        <!-- Street  -->
+        <div class="col"></div>
+        <!-- landmark  -->
+        <div class="col"></div>
+      </div>
+      <div class="row">
+        <!-- city  -->
+        <div class="col"></div>
+        <!-- pincode  -->
+        <div class="col"></div>
+      </div>
     </div>
     </div>
     <div class="row">
