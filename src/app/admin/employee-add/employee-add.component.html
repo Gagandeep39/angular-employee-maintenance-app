@@ -2,20 +2,22 @@
 @author Gagandeep Singh
 @email singh.gagandeep3911@gmail.com
 @create date 2020-03-24 23:22:28
-@modify date 2020-03-24 23:22:28
+@modify date 2020-03-25 19:18:00
 -->
-
-<div class="container-fluid">
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+<app-alert [message]="error" (alertActionEvent)="handleOutputMessage($event)" *ngIf="error"></app-alert>
+<div class="container-fluid" *ngIf="!isLoading">
 
   <form class="well form-horizontal" [formGroup]="employeeForm" (ngSubmit)="submitForm()">
 
     <!-- Form Name -->
 
     <legend>
-      <h2><b>Registration Form</b></h2>
-    </legend><br>
+      <h2><b>Employee Registration Form</b></h2>
+    </legend>
+    <hr>
     <div>
-      <div class="row" style="background-color: beige;">
+      <div class="row">
       <!-- First Name  -->
       <div class="col">
         <div class="form-group">
@@ -52,7 +54,7 @@
         </div>
       </div>
     </div>
-    <div class="row" style="background-color: lightblue;">
+    <div class="row">
       <!-- date of birth   -->
       <div class="col">
         <div class="form-group">
@@ -92,7 +94,7 @@
         </div>
       </div>
     </div>
-    <div class="row" style="background-color: lightgrey;">
+    <div class="row">
       <!-- Marital status  -->
       <div class="col">
         <div class="form-group">
@@ -126,7 +128,7 @@
           </div>
       </div>
     </div>
-    <div class="row" style="background-color: beige;">
+    <div class="row">
       <!-- Deprtment  -->
       <div class="col">
         <div class="form-group">
@@ -193,6 +195,23 @@
           </div>
 
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <!-- Designation  -->
+          <div class="form-group">
+            <label for="empdesignation">Select designation</label>
+            <select
+            name="empdesignation"
+            id="empdesignation"
+            formControlName="empDesignation"
+            [ngClass]="{'is-invalid': submitted && employeeForm.get('empDesignation').invalid}"
+            class="custom-select">
+                <option *ngFor="let desig of designations | keyvalue; let i = index;" [value]="desig.key"> {{ desig.key }} </option>
+            </select>
+            <div class="invalid-feedback" *ngIf="submitted && employeeForm.get('empDesignation').invalid">Select a Designation</div>
+          </div>
       </div>
     </div>
     <div class="row">
@@ -310,15 +329,16 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row container">
       <button class="btn btn-primary" type="submit">Submit</button>
     </div>
     </div>
     </form>
   <pre>
-    {{ employeeForm.value | json }}
+    <!-- {{ employeeForm.value | json }} -->
   </pre>
 </div>
 <!-- TODO department, manager, grade with async pipe  -->
 <!-- TODO Implement multiple phone number  -->
+<!-- TODO add pagination  -->
 
