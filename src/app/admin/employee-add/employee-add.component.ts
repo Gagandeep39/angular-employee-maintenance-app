@@ -124,7 +124,6 @@ export class EmployeeAddComponent implements OnInit {
         console.log(response);
         this.isLoading = false;
         this.error = 'Successfully Created employee with ID: ' +  response;
-        this.redirectToHomePage();
       },
       error => {
         console.log(error);
@@ -140,6 +139,7 @@ export class EmployeeAddComponent implements OnInit {
 
   handleOutputMessage() {
     this.error = '';
+    this.redirectToHomePage();
   }
 }
 /**  `
