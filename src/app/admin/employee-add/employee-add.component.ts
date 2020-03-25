@@ -52,7 +52,7 @@ export class EmployeeAddComponent implements OnInit {
         street: new FormControl('', Validators.required),
         landmark: new FormControl('', Validators.required),
         city: new FormControl('', Validators.required),
-        state: new FormControl('', Validators.required),
+        // state: new FormControl('', Validators.required),
         pincode: new FormControl('', [Validators.required, Validators.pattern('[0-9]{6}')])
       })
     });
