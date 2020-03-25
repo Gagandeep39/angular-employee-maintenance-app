@@ -1,11 +1,11 @@
 import { User } from './../../models/user.model';
 import { ActivatedRoute } from '@angular/router';
 import { UserType } from './../../models/user-type.model';
-import { CustomValidators } from './../employee-add/custom-validators';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { CustomValidators } from 'src/app/shared/custom-validators';
 /**
  * @author Gagandeep Singh
  * @email singh.gagandeep3911@gmail.com

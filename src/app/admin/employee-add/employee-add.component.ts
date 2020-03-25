@@ -10,10 +10,10 @@ import { Department } from './../../models/department.model';
 import { AdminService } from 'src/app/services/admin.service';
 import { Gender } from './../../models/gender.model';
 import { MaritalStatus } from './../../models/marital-status.model';
-import { CustomValidators } from './custom-validators';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Designation } from 'src/app/models/designation.model'
+import { CustomValidators } from 'src/app/shared/custom-validators';
 
 /**
  * @author Gagandeep Singh

@@ -6,7 +6,6 @@ import { UserService } from 'src/app/services/user.service';
  * @modify date 2020-03-25 13:34:53
  */
 
-import { GradeType } from './../../models/grade-type.model';
 import {
   FormControl,
   ValidatorFn,
@@ -15,6 +14,7 @@ import {
 } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
+import { GradeType } from '../models/grade-type.model';
 
 export class CustomValidators {
   static forbiddenAge(control: FormControl) {
