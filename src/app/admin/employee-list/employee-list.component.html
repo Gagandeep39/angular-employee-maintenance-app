@@ -16,7 +16,7 @@
     <td> {{ emp.empDesignation }} </td>
     <td> {{ emp.empHomeAddress.city }} </td>
     <td> {{ emp.empDateOfJoining }} </td>
-    <td> {{ emp.empBasic | currency }} </td>
+    <td> {{ emp.empBasic | currency:'&#8377;' }} </td>
     <td> <button type="button" class="btn btn-primary" [routerLink]="[i, 'details']" routerLinkActive="router-link-active" >View</button> </td>
   </tr>
 </table>
