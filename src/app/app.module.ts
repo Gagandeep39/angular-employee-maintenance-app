@@ -1,3 +1,4 @@
+import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -19,23 +20,7 @@ import { GradeTypePipe } from './shared/grade-type.pipe';
 import { UserAddComponent } from './admin/user-add/user-add.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
-const routes: Routes = [
-  // Below patch is a place holder until other features are not implemented
-  { path: '', redirectTo: 'admin', pathMatch: 'full' },
-  {
-    path: 'admin',
-    component: AdminComponent,
-    children: [
-      { path: '', redirectTo: 'list', pathMatch: 'full' },
-      { path: 'adduser', component: UserAddComponent },
-      { path: 'list', component: EmployeeListComponent },
-      { path: 'addemp', component: EmployeeAddComponent },
-      { path: ':id/updateemp', component: EmployeeAddComponent },
-      { path: 'list/:id/details', component: EmployeeDetailsComponent },
-      { path: '**', redirectTo: 'list' }
-    ]
-  }
-];
+
 
 @NgModule({
   declarations: [
@@ -51,13 +36,13 @@ const routes: Routes = [
     CalAgePipe,
     GradeTypePipe,
     UserAddComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes),
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
