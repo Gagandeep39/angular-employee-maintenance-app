@@ -1,0 +1,57 @@
+<!--
+@author Gagandeep Singh
+@email singh.gagandeep3911@gmail.com
+@create date 2020-03-26 01:11:16
+@modify date 2020-03-26 01:11:16
+@desc Login UI
+-->
+<div>
+  <app-alert [message]="error" (alertActionEvent)="handleError($event)" *ngIf="error"></app-alert>
+</div>
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+<div *ngIf="!isLoading">
+  <div class="sidenav">
+    <div class="login-main-text">
+      <h2>Employee<br>Management <br>System </h2>
+      <p>Login or register from here to access.</p>
+    </div>
+  </div>
+  <div class="main">
+    <div class="col-md-6 col-sm-12">
+      <form class="login-form" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+        <div>
+          <div class="form-group">
+            <label>User Name</label>
+            <input
+            type="text"
+            [ngClass]="{'is-invalid': submitted && loginForm.get('username').invalid}"
+            class="form-control"
+            formControlName="username"
+            placeholder="User Name">
+            <div class="invalid-feedback" *ngIf="submitted && loginForm.get('username').invalid">
+              <div *ngIf="submitted && loginForm.get('username').errors['required']">*Required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input
+            [ngClass]="{'is-invalid': submitted && loginForm.get('password').invalid}"
+            type="password"
+            class="form-control"
+            formControlName="password"
+            placeholder="Password">
+            <div class="invalid-feedback" *ngIf="submitted && loginForm.get('password').invalid">
+              <div *ngIf="submitted && loginForm.get('password').errors['required']">*Required</div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-black">Login</button>
+          <button type="submit" class="btn btn-secondary" style="margin-left: 12px;">Register</button>
+        </div>
+      </form>
+      <!-- <pre>
+        {{ loginForm.value | json }}
+      </pre> -->
+    </div>
+  </div>
+
+</div>
