@@ -7,7 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class GradeTypePipe implements PipeTransform {
 
   transform(value: GradeType, args?: any): any {
-    return value.grade + ' ($' + value.minSalary + ' - $' + value.maxSalary + ')';
+    return value.grade + ' (₹' + value.minSalary + ' - ₹' + value.maxSalary + ')';
   }
 
 }
