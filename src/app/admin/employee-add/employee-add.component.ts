@@ -1,4 +1,3 @@
-@modify date 2020-03-25 19:25:45
 
 import { User } from './../../models/user.model';
 import { take } from 'rxjs/operators';
@@ -14,6 +13,7 @@ import { MaritalStatus } from './../../models/marital-status.model';
 import { CustomValidators } from './custom-validators';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Designation } from 'src/app/models/designation.model'
 
 /**
  * @author Gagandeep Singh

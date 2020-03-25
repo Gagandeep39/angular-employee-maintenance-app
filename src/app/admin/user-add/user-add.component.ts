@@ -1,7 +1,11 @@
-import { take } from 'rxjs/operators';
 import { User } from './../../models/user.model';
-import { AdminService } from 'src/app/services/admin.service';
 import { ActivatedRoute } from '@angular/router';
+import { UserType } from './../../models/user-type.model';
+import { CustomValidators } from './../employee-add/custom-validators';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 /**
  * @author Gagandeep Singh
  * @email singh.gagandeep3911@gmail.com
@@ -10,13 +14,6 @@ import { ActivatedRoute } from '@angular/router';
  * @desc Add user component to create a new user
  */
 
-import { UserType } from './../../models/user-type.model';
-import { CustomValidators } from './../employee-add/custom-validators';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-add',
