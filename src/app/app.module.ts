@@ -17,6 +17,7 @@ import { FullNamePipe } from './shared/full-name.pipe';
 import { CalAgePipe } from './shared/cal-age.pipe';
 import { GradeTypePipe } from './shared/grade-type.pipe';
 import { UserAddComponent } from './admin/user-add/user-add.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 const routes: Routes = [
   // Below patch is a place holder until other features are not implemented
@@ -49,7 +50,8 @@ const routes: Routes = [
     FullNamePipe,
     CalAgePipe,
     GradeTypePipe,
-    UserAddComponent
+    UserAddComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
