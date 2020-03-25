@@ -1,11 +1,7 @@
-/**
- * @author Gagandeep Singh
- * @email singh.gagandeep3911@gmail.com
- * @create date 2020-03-25 15:35:42
- * @modify date 2020-03-25 15:35:42
- * @desc Performs ogical operation for the admin
- */
-
+import { map } from 'rxjs/operators';
+import { exhaustMap } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
+import { UserService } from 'src/app/services/user.service';
 import { User } from './../models/user.model';
 import { GradeType } from './../models/grade-type.model';
 import { Department } from './../models/department.model';
@@ -14,6 +10,13 @@ import { Employee } from './../models/employee.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject, BehaviorSubject } from 'rxjs';
+/**
+ * @author Gagandeep Singh
+ * @email singh.gagandeep3911@gmail.com
+ * @create date 2020-03-25 15:35:42
+ * @modify date 2020-03-25 19:23:00
+ * @desc Performs ogical operation for the admin
+ */
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +31,7 @@ export class AdminService {
   departmentEmitter = new BehaviorSubject<Department[]>(null);
   gradeEmitter = new BehaviorSubject<GradeType[]>(null);
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private userService: UserService) {
     this.http
       .get<Employee[]>(
         environment.employeeRepositoryUrl + environment.employeeTable
@@ -88,13 +91,20 @@ export class AdminService {
   }
 
   // Post
-  addEmployee(employee: Employee) {
-    this.http.post<Employee>(
-      environment.employeeRepositoryUrl +
-        environment.employeeTable +
-        employee.id,
-      employee
-    );
+  addEmployee(user: User, employee: Employee) {
+    return this.userService
+      .addUser(user)
+      .pipe(
+        take(1),
+        exhaustMap(response => {
+          employee.id = +response;
+          return this.http.post<Employee>(
+            environment.employeeRepositoryUrl + environment.employeeTable,
+            employee
+          );
+        })
+      )
+      .pipe(map(response => response.id));
   }
 
   // Put -
@@ -136,8 +146,6 @@ export class AdminService {
       .filter(emp => emp.empDesignation === 'Manager')
       .slice();
   }
-
-
 }
 
 /**

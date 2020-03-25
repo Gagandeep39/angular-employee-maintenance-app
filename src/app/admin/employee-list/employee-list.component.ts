@@ -2,7 +2,14 @@ import { Employee } from './../../models/employee.model';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AdminService } from 'src/app/services/admin.service';
 import { Subscription, Observable } from 'rxjs';
-import { serializePath } from '@angular/router/src/url_tree';
+
+/**
+ * @author Gagandeep Singh
+ * @email singh.gagandeep3911@gmail.com
+ * @create date 2020-03-25 19:24:35
+ * @modify date 2020-03-25 19:24:35
+ * @desc Displays a list of employees
+ */
 
 @Component({
   selector: 'app-employee-list',
@@ -13,15 +20,24 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   employees: Employee[] = [];
   error: string;
   employeeSubscription: Subscription;
-  errorSubscription: Subscription
+  errorSubscription: Subscription;
+  isLoading = false;
 
   constructor(private adminService: AdminService) {}
 
   ngOnInit() {
-    this.employeeSubscription = this.adminService.employeeErrorEmitter.subscribe(response => this.error = response);
-    this.errorSubscription = this.adminService.employeeListChanged.subscribe(response => {
-      this.employees = this.adminService.fetchEmployees();
-    });
+    this.errorSubscription = this.adminService.employeeErrorEmitter.subscribe(
+      response => {
+        this.error = response;
+        this.isLoading = false;
+      }
+    );
+    this.employeeSubscription = this.adminService.employeeListChanged.subscribe(
+      response => {
+        this.employees = this.adminService.fetchEmployees();
+        this.isLoading = false;
+      }
+    );
   }
 
   ngOnDestroy() {
@@ -30,11 +46,11 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   }
 
   sortByName() {
-    if(this.employees) this.employees = this.adminService.sortByName();
+    if (this.employees) this.employees = this.adminService.sortByName();
   }
 
   sortById() {
-    if(this.employees) this.employees = this.adminService.sortById();
+    if (this.employees) this.employees = this.adminService.sortById();
   }
 
   handleError(event: string) {
@@ -42,5 +58,4 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
       this.error = '';
     }
   }
-
 }
