@@ -1,3 +1,4 @@
+import { LoginModule } from './login/login.module';
 /**
  * @author Gagandeep Singh
  * @email singh.gagandeep3911@gmail.com
@@ -26,7 +27,8 @@ import { AdminModule } from './admin/admin.module';
     // 1. UnComment below Modules
     // 2. Comment the paths in pp-routing
     // 3. Set the path as 'admin' in admin-routing.module instead of ''
-    AdminModule
+    AdminModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]

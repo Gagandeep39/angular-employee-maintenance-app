@@ -1,0 +1,63 @@
+
+<!-- Spinner shown while waiting  -->
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+<!-- error shown  -->
+<app-alert [message]="error" (alertActionEvent)="handleOutputMessage($event)" *ngIf="error"></app-alert>
+
+<div *ngIf="!isLoading">
+  <app-login-header></app-login-header>
+  <div class="main">
+    <div class="col-md-6 col-sm-12">
+      <form class="register-form" (ngSubmit)="onSubmit()" [formGroup]="userRegisterationForm">
+        <div>
+          <div class="form-group">
+            <label>User Name</label>
+            <input
+            type="text"
+            [ngClass]="{'is-invalid': submitted && userRegisterationForm.get('username').invalid}"
+            class="form-control"
+            formControlName="username"
+            placeholder="User Name">
+            <div class="invalid-feedback" *ngIf="submitted && userRegisterationForm.get('username').invalid">
+              <div *ngIf="submitted && userRegisterationForm.get('username').errors['required']">*Required</div>
+              <div *ngIf="userRegisterationForm.get('username').errors['pattern']">Username cannot have spaces, length must be (4-12)</div>
+              <div *ngIf="userRegisterationForm.get('username').errors['minLength']">Username must have minimum 4 characters</div>
+              <div *ngIf="userRegisterationForm.get('username').errors['usernameTaken']">Username Is Taken</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input
+            [ngClass]="{'is-invalid': submitted && userRegisterationForm.get('password').invalid}"
+            type="password"
+            class="form-control"
+            formControlName="password"
+            placeholder="Password">
+            <div class="invalid-feedback" *ngIf="submitted && userRegisterationForm.get('password').invalid">
+              <div *ngIf="submitted && userRegisterationForm.get('password').errors['required']">*Required</div>
+              <div *ngIf="submitted && userRegisterationForm.get('password').errors['pattern']">Password must contain atleast 1 uppercase, lowercase and number</div>
+              <div *ngIf="submitted && userRegisterationForm.get('password').errors['minLength']">Username must have minimum 6 characters</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input
+            [ngClass]="{'is-invalid': submitted && userRegisterationForm.get('confirmPassword').invalid}"
+            type="password"
+            class="form-control"
+            formControlName="confirmPassword"
+            placeholder="Password">
+            <div class="invalid-feedback" *ngIf="submitted && userRegisterationForm.get('confirmPassword').invalid">
+              <div *ngIf="submitted && userRegisterationForm.get('confirmPassword').errors['required']">*Required</div>
+              <div *ngIf="submitted && userRegisterationForm.get('confirmPassword').errors['pattern']">Password must contain atleast 1 uppercase, lowercase and number</div>
+              <div *ngIf="submitted && userRegisterationForm.get('confirmPassword').errors['passwordMatchError']">Passwords are not same</div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-black">Create User</button>
+          <button type="button" class="btn btn-secondary" style="margin-left: 12px;" [routerLink]="['/login']" routerLinkActive="router-link-active" >Back to Login</button>
+        </div>
+      </form>
+      <!-- {{ userRegisterationForm.value | json }} -->
+    </div>
+  </div>
+</div>

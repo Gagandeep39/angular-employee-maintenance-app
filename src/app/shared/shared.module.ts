@@ -19,7 +19,6 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    CommonModule
   ],
   declarations: [
     AlertComponent,
