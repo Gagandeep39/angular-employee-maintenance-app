@@ -13,6 +13,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, ErrorHandler } from '@angular/core';
 import { User } from '../models/user.model';
 import { map } from 'rxjs/operators';
+import { UserType } from '../models/user-type.model';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +42,9 @@ export class AuthService {
             );
             if (response[index].password == user.password) {
               this.loggedInUser.next(response[index]);
+              if(response[index].userType==UserType.Admin)
               return true;
+              else throw 'Employee Panel not implemented yet'
             } else throw 'Invalid Password';
           }
         })
