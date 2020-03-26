@@ -10,12 +10,7 @@
 </div>
 <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
 <div *ngIf="!isLoading">
-  <div class="sidenav">
-    <div class="login-main-text">
-      <h2>Employee<br>Management <br>System </h2>
-      <p>Login or register from here to access.</p>
-    </div>
-  </div>
+  <app-login-header></app-login-header>
   <div class="main">
     <div class="col-md-6 col-sm-12">
       <form class="login-form" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
@@ -45,12 +40,9 @@
             </div>
           </div>
           <button type="submit" class="btn btn-black">Login</button>
-          <button type="button" [disabled]="true" class="btn btn-secondary" style="margin-left: 12px;">Register</button>
+          <button type="button" class="btn btn-secondary" style="margin-left: 12px;" (click)="onRegister()" >Register</button>
         </div>
       </form>
-      <!-- <pre>
-        {{ loginForm.value | json }}
-      </pre> -->
     </div>
   </div>
 

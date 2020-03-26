@@ -1,3 +1,5 @@
+import { take } from 'rxjs/operators';
+import { UserService } from 'src/app/services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from './../models/user.model';
 import { AuthService } from './../services/auth.service';
@@ -14,27 +16,34 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: [
+    './login.component.css',
+    './login-header/login-header.component.css'
+  ]
 })
 export class LoginComponent implements OnInit {
-
   loginForm: FormGroup;
   submitted = false;
   error = '';
   isLoading = false;
+  currentUser: User;
 
-  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.loginForm = new FormGroup({
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
-    })
+    });
   }
 
   onSubmit() {
     this.submitted = true;
-    if(this.loginForm.valid){
+    if (this.loginForm.valid) {
       this.isLoading = true;
       this.submitted = false;
       const user = this.loginForm.value;
@@ -46,13 +55,14 @@ export class LoginComponent implements OnInit {
     this.authService.logIn(user).subscribe(
       response => {
         this.isLoading = false;
-        if(response)
-          this.router.navigate(['../admin'], {relativeTo: this.route});
-      }, error => {
+        if (response)
+          this.router.navigate(['../admin'], { relativeTo: this.route });
+      },
+      error => {
         this.isLoading = false;
         this.error = error;
       }
-    )
+    );
   }
 
   handleError(event) {
@@ -60,6 +70,9 @@ export class LoginComponent implements OnInit {
     this.loginForm.reset();
   }
 
+  onRegister() {
+    this.router.navigate(['/register']);
+  }
 }
 
 // TODO After loggin in show message successfully logged in for 2 sec
