@@ -33,3 +33,5 @@ jobs:
         BASE_BRANCH: master
         BRANCH: gh-pages
         FOLDER: dist/angular-employee-maintenance-app
+    - name: ZEIT Now Deployment
+      uses: amondnet/now-deployment@v2.0.2
